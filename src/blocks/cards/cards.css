@@ -1,0 +1,19 @@
+.cards {
+  padding-top: 51px;
+  margin: auto;
+  max-width: 880px;
+  min-height: 78vh;
+}
+
+@media screen and (max-width: 950px) {
+  .cards {
+    max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .cards {
+    max-width: 92.5%;
+    padding-top: 36px;
+  }
+}

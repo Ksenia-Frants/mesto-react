@@ -1,0 +1,12 @@
+.card {
+  border-radius: 10px;
+  background-color: #ffff;
+  width: 100%;
+  position: relative;
+}
+
+@media screen and (max-width: 370px) {
+  .card {
+    max-width: 282px;
+  }
+}
