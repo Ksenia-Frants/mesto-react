@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
 
 function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
-    React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
-    React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({
+    isOpen: false,
+    element: {},
+  });
+
+  const handleCardClick = (card) => {
+    setSelectedCard({ ...selectedCard, isOpen: true, element: card });
+  };
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
@@ -27,6 +34,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
+    setSelectedCard({ ...selectedCard, isOpen: false });
   };
 
   return (
@@ -36,6 +44,7 @@ function App() {
         onEditAvatar={handleEditAvatarClick}
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
+        onCardClick={handleCardClick}
       />
       <Footer />
       <PopupWithForm
@@ -124,18 +133,7 @@ function App() {
           </fieldset>
         }
       />
-      <section
-        className="popup popup_photo"
-        aria-label="Секция попапа с фотографией"
-      >
-        <div className="popup__container-image">
-          <button className="popup__close"></button>
-          <figure className="popup__figure">
-            <img src="#" alt="" className="popup__image" />
-            <figcaption className="popup__caption"></figcaption>
-          </figure>
-        </div>
-      </section>
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       <section className="popup popup_delete">
         <div className="popup__container">
           <button className="popup__close"></button>
@@ -150,19 +148,6 @@ function App() {
           </form>
         </div>
       </section>
-      <template id="photo-card-template">
-        <div className="card">
-          <img src="#" alt="" className="card__image" />
-          <div className="card__image-description">
-            <h2 className="card__title"></h2>
-            <div className="card__like-container">
-              <button className="card__like"></button>
-              <p className="card__like-number">1</p>
-            </div>
-          </div>
-          <button className="card__delete"></button>
-        </div>
-      </template>
     </div>
   );
 }

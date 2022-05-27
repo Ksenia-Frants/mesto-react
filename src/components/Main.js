@@ -1,20 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import profileAvatar from "../images/Avatar.jpg";
 import api from "../utils/api";
+import Card from "./Card";
 
 function Main(props) {
-  const [userName, setUserName] = React.useState("");
-  const [userDescription, setUserDescription] = React.useState("");
-  const [userAvatar, setUserAvatar] = React.useState("");
+  const [userName, setUserName] = useState("");
+  const [userDescription, setUserDescription] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
+  const [cards, setCards] = useState([]);
 
-  api
-    .getUser()
-    .then((data) => {
-      setUserName(data.name);
-      setUserDescription(data.about);
-      setUserAvatar(data.avatar);
-    })
-    .catch((err) => console.log(err));
+  useEffect(() => {
+    api
+      .getUser()
+      .then((res) => {
+        setUserName(res.name);
+        setUserDescription(res.about);
+        setUserAvatar(res.avatar);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    api
+      .getinitialCards()
+      .then((res) => {
+        setCards(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <main className="content">
       <section className="profile">
@@ -45,7 +58,11 @@ function Main(props) {
         ></button>
       </section>
       <section className="cards" aria-label="Секция для карточек">
-        <ul className="cards__list"></ul>
+        <ul className="cards__list">
+          {cards.map((card) => (
+            <Card card={card} key={card._id} onCardClick={props.onCardClick} />
+          ))}
+        </ul>
       </section>
     </main>
   );
