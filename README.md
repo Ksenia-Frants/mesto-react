@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Project: Mesto-React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This is my tenth project work in Yandex-Practicum on the course "Web development". Here I use React learning skills.
 
-In the project directory, you can run:
+In my project work, an application for adding pictures or photos is implemented. It's like instagram or tumblr. Images can be described and liked. The profile can be edited by entering your name and occupation.
 
-### `npm start`
+**Basic functionality:**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Editing an avatar image using a link to an image;
+- Editing a profile where the name and occupation are indicated;
+- Adding a new photo, by specifying a link and caption to the picture;
+- Deleting your card when you click on the trash icon;
+- Adding and removing likes, you can also see the number of likes from other users;
+- Opening a full-size photo
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The work was done according to the layout of figma.
 
-### `npm test`
+**Figma**
+[Link to the market in Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**It uses technologies such as:**
 
-### `npm run build`
+- BEM methodology
+- flexbox layout;
+- advanced HTML and CSS capabilities;
+- positioning elements;
+- adaptive layout;
+- grid layout;
+- Java Script(ES6) and Browser Operation;
+- principles of object-oriented programming;
+- Webpack;
+- React (Create React App, porting markup to JSX, functional components and hooks)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Installing and running:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- npm i - installing dependencies;
+- npm run start - starting the server;
+- npm run build - start the project build;
+- npm run deploy - publishing the build on github pages
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Project link:**
+[Link to the project](http://ksenia-frants.github.io/mesto-react/)
