@@ -58,13 +58,14 @@ class Api {
       headers: this._headers,
     }).then((res) => this._errorHandler(res));
   }
-
+  // Удаление карточки
   deleteCard(id) {
     return fetch(`${this._url}cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => this._errorHandler(res));
   }
+  // Редактирование аватара
   editAvatar(avatar) {
     return fetch(`${this._url}users/me/avatar`, {
       method: "PATCH",
@@ -72,6 +73,13 @@ class Api {
       body: JSON.stringify({
         avatar: avatar["link-avatar"],
       }),
+    }).then((res) => this._errorHandler(res));
+  }
+  // Добавление лайка карточке
+  changeLikeCardStatus(id, isLiked) {
+    return fetch(`${this._url}cards/${id}/likes`, {
+      method: isLiked ? "PUT" : "DELETE",
+      headers: this._headers,
     }).then((res) => this._errorHandler(res));
   }
 }
