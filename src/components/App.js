@@ -6,6 +6,7 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import EditProfilePopup from "./EditProfilePopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -23,28 +24,39 @@ function App() {
     });
   }, []);
 
-  const handleCardClick = (card) => {
+  function handleCardClick(card) {
     setSelectedCard({ ...selectedCard, isOpen: true, element: card });
-  };
+  }
 
-  const handleEditAvatarClick = () => {
+  function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
-  };
+  }
 
-  const handleEditProfileClick = () => {
+  function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
-  };
+  }
 
-  const handleAddPlaceClick = () => {
+  function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
-  };
+  }
 
-  const closeAllPopups = () => {
+  function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setSelectedCard({ ...selectedCard, isOpen: false });
-  };
+  }
+
+  function handleUpdateUser(data) {
+    const { name, about } = data;
+    api
+      .editProfile(name, about)
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -57,39 +69,11 @@ function App() {
           onCardClick={handleCardClick}
         />
         <Footer />
-        <PopupWithForm
-          name={"edit"}
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
-          title={"Редактировать профиль"}
           onClose={closeAllPopups}
-        >
-          <fieldset className="popup__info">
-            <label htmlFor="name" className="popup__label"></label>
-            <input
-              type="text"
-              className="popup__input popup__input_type_name"
-              id="name"
-              name="name"
-              placeholder="Имя"
-              required
-              minLength="2"
-              maxLength="40"
-            />
-            <span className="popup__error" id="name-error"></span>
-            <label htmlFor="about" className="popup__label"></label>
-            <input
-              type="text"
-              className="popup__input popup__input_type_description"
-              id="about"
-              name="about"
-              placeholder="О себе"
-              required
-              minLength="2"
-              maxLength="200"
-            />
-            <span className="popup__error" id="about-error"></span>
-          </fieldset>
-        </PopupWithForm>
+          onUpdateUser={handleUpdateUser}
+        />
         <PopupWithForm
           name={"add"}
           isOpen={isAddPlacePopupOpen}
