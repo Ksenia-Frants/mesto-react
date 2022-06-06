@@ -7,6 +7,7 @@ import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -16,7 +17,10 @@ function App() {
     isOpen: false,
     element: {},
   });
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({
+    name: "",
+    about: "",
+  });
 
   useEffect(() => {
     api.getUser().then((res) => {
@@ -51,6 +55,17 @@ function App() {
     const { name, about } = data;
     api
       .editProfile(name, about)
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleUpdateVatar(data) {
+    const { avatar } = data;
+    api
+      .editAvatar(avatar)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
@@ -107,25 +122,11 @@ function App() {
           </fieldset>
         </PopupWithForm>
 
-        <PopupWithForm
-          name={"avatar"}
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
-          title={"Обновить аватар"}
           onClose={closeAllPopups}
-        >
-          <fieldset className="popup__info">
-            <label htmlFor="link-avatar" className="popup__label"></label>
-            <input
-              type="url"
-              className="popup__input popup__input_type_avatar-link"
-              id="link-avatar"
-              name="link-avatar"
-              placeholder="Ссылка на картинку"
-              required
-            />
-            <span className="popup__error" id="link-avatar-error"></span>
-          </fieldset>
-        </PopupWithForm>
+          onUpdateAvatar={handleUpdateVatar}
+        />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         <section className="popup popup_delete">
           <div className="popup__container">
