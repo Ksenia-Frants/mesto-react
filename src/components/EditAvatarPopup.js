@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isLoading }) {
   const avatarRef = useRef();
 
   function handleSubmit(e) {
@@ -19,6 +19,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       title={"Обновить аватар"}
       onClose={onClose}
       onSubmit={handleSubmit}
+      buttonText={isLoading ? "Сохранение..." : "Сохранить"}
     >
       <fieldset className="popup__info">
         <label htmlFor="link-avatar" className="popup__label"></label>

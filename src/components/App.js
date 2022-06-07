@@ -22,6 +22,7 @@ function App() {
     about: "",
   });
   const [cards, setCards] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     api.getUser().then((res) => {
@@ -78,6 +79,7 @@ function App() {
   }
 
   function handleUpdateUser(data) {
+    setLoading(true);
     const { name, about } = data;
     api
       .editProfile(name, about)
@@ -85,10 +87,12 @@ function App() {
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   }
 
   function handleUpdateVatar(data) {
+    setLoading(true);
     const { avatar } = data;
     api
       .editAvatar(avatar)
@@ -96,10 +100,12 @@ function App() {
         setCurrentUser(res);
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   }
 
   function handleAddPlaceSubmit(data) {
+    setLoading(true);
     const { name, link } = data;
     api
       .addCard(name, link)
@@ -107,7 +113,8 @@ function App() {
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   }
 
   return (
@@ -128,17 +135,20 @@ function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
+          isLoading={loading}
         />
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
+          isLoading={loading}
         />
 
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateVatar}
+          isLoading={loading}
         />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         <section className="popup popup_delete">
