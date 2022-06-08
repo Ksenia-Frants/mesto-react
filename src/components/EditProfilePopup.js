@@ -22,7 +22,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
   useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
   function handleSubmit(event) {
     // Запрещаем браузеру переходить по адресу формы
@@ -49,7 +49,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
         <input
           type="text"
           className="popup__input popup__input_type_name"
-          value={name}
+          value={name || ""}
           onChange={handleChangeName}
           id="name"
           name="name"
@@ -63,7 +63,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, isLoading }) {
         <input
           type="text"
           className="popup__input popup__input_type_description"
-          value={description}
+          value={description || ""}
           onChange={handleChangeDescription}
           id="about"
           name="about"

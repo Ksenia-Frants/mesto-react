@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace, isLoading }) {
@@ -21,6 +21,11 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, isLoading }) {
       link,
     });
   }
+
+  useEffect(() => {
+    setName("");
+    setLink("");
+  }, [isOpen]);
 
   return (
     <PopupWithForm
@@ -54,6 +59,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, isLoading }) {
           name="link"
           placeholder="Ссылка на картинку"
           required
+          value={link}
           onChange={handleChangeLink}
         />
         <span className="popup__error" id="link-error"></span>
