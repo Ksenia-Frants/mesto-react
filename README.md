@@ -2,9 +2,9 @@
 
 ## Description
 
-This is my tenth project work in Yandex-Practicum on the course "Web development". Here I use React learning skills.
+This is rewritten in React.js work "Mesto"
 
-In my project work, an application for adding pictures or photos is implemented. It's like instagram or tumblr. Images can be described and liked. The profile can be edited by entering your name and occupation.
+In my project work, an application for adding pictures or photos is implemented. It's like instagram or tumblr. Images add with a title and description. You can add a card by pressing the Enter button while in one of the text fields. You can like your own and other people's cards. You can only delete your card by clicking on the trash icon. By clicking on the image in the card, you can open it in full-scale size. You can edit your profile by specifying your name and occupation, and you can change your profile photo by specifying a link to a new image. All popups with forms are closed by clicking on the cross or on the Esc button.
 
 **Basic functionality:**
 
@@ -40,5 +40,11 @@ The work was done according to the layout of figma.
 - npm run build - start the project build;
 - npm run deploy - publishing the build on github pages
 
+**Plans for completion:**
+
+- Make form validation;
+- Block the form submission button if the fields do not pass validation;
+- Implement pop-up closure by clicking on the background.
+
 **Project link:**
-[Link to the project](http://ksenia-frants.github.io/mesto-react/)
+[Link to the project](https://ksenia-frants.github.io/mesto-react/)
